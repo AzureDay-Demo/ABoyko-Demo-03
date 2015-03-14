@@ -123,7 +123,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\gruntfile.js" (
 
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd npm install grunt-cli
-  call :ExecuteCmd grunt build
+  grunt build
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )

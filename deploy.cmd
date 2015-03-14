@@ -133,8 +133,9 @@ IF EXIST "%DEPLOYMENT_TARGET%\gruntfile.json" (
 :: 7. Deploy
 echo "deploy"
 
-call :ExecuteCmd xcopy "%DEPLOYMENT_TARGET%\dist" "%DEPLOYMENT_TARGET%" /S /Y /R
+xcopy "%DEPLOYMENT_TARGET%\dist" "%DEPLOYMENT_TARGET%" /S /Y /R
 
+IF !ERRORLEVEL! NEQ 0 goto error
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

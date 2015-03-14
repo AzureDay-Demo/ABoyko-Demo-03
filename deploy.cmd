@@ -133,9 +133,13 @@ IF EXIST "%DEPLOYMENT_TARGET%\gruntfile.json" (
 :: 7. Deploy
 echo "deploy"
 
-xcopy "%DEPLOYMENT_TARGET%\dist" "%DEPLOYMENT_TARGET%" /S /Y /R
+pushd "%DEPLOYMENT_TARGET%"
+
+xcopy "\dist" "\" /S /Y /R /I
 
 IF !ERRORLEVEL! NEQ 0 goto error
+
+popd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

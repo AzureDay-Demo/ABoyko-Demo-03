@@ -132,6 +132,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\gruntfile.js" (
 
 
 :: 7. Deploy
+cls
+
 echo "deploy"
 
 pushd "%DEPLOYMENT_TARGET%"

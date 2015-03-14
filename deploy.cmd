@@ -138,7 +138,7 @@ echo "deploy"
 
 pushd "%DEPLOYMENT_TARGET%"
 
-xcopy "\dist" "\" /S /Y /R /I
+xcopy "%cd%\dist" "%cd%\" /S /Y /R /I
 
 IF !ERRORLEVEL! NEQ 0 goto error
 

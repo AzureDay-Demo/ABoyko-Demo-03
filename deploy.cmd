@@ -99,6 +99,8 @@ call :SelectNodeVersion
 
 :: 3. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  echo "npm install"
+
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -107,6 +109,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
 :: 4. Install bower packages
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
+  echo "bower install"
+
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd bower install
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -115,6 +119,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 
 :: 5. Build
 IF EXIST "%DEPLOYMENT_TARGET%\gruntfile.json" (
+  echo "grunt build"
+
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd grunt build
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -125,6 +131,10 @@ IF EXIST "%DEPLOYMENT_TARGET%\gruntfile.json" (
 
 
 :: 7. Deploy
+echo "deploy"
+
+call :ExecuteCmd xcopy "%DEPLOYMENT_TARGET%\dist" "%DEPLOYMENT_TARGET%" /S /Y /R
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

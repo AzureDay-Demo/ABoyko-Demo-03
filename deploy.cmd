@@ -118,7 +118,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 )
 
 :: 5. Build
-IF EXIST "%DEPLOYMENT_TARGET%\gruntfile.json" (
+IF EXIST "%DEPLOYMENT_TARGET%\gruntfile.js" (
   echo "grunt build"
 
   pushd "%DEPLOYMENT_TARGET%"
